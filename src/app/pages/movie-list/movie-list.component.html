@@ -1,0 +1,36 @@
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Best Movies</h1>
+        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc.
+          Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+  
+  
+        <input type="text" class="form-control fs-4" (keyup)="updateFilter($event)" placeholder="Search Videos">
+  
+      </div>
+    </div>
+  </section>
+  
+  <div class="album py-5 bg-light">
+    <div class="container">
+  
+      <div class="row">
+        <div class="col-md-4" *ngFor="let movie of movieList | slice:0:filter.pageNumber*30">
+          <app-movie-item [movie]="movie"></app-movie-item>
+        </div>
+      </div>
+
+
+    <div class="row">
+      <div class="offset-4 col-md-4">
+          <ul class="list-unstyled">
+            <li *ngFor="let item of collection | paginate: { itemsPerPage: 10, currentPage: p }">  </li>
+          </ul>
+                     
+          <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+
+      </div>
+    </div>
+    </div>
+  </div>
